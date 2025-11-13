@@ -19,7 +19,8 @@ class PwnStarToolkit:
             else:
                 print("Invalid option.")
 
-    def display_banner(self):
+    @staticmethod
+    def display_banner():
         print(r"""
 ========================================================================
    ___                 __ _               _____            _ _    _ _   
@@ -31,12 +32,14 @@ class PwnStarToolkit:
 ========================================================================
         """)
 
-    def display_menu(self):
+    @staticmethod
+    def display_menu():
         print("\n[0] Exit")
         print("[1] Hash Crack")
         print("[2] Vigenere Decode")
 
-    def vigenere_decrypt(self):
+    @staticmethod
+    def vigenere_decrypt():
         print("\n=== Vigenere Decrypt ===")
         ciphertext = input("Enter ciphertext: ")
         key = input("Enter key: ")
@@ -57,8 +60,8 @@ class PwnStarToolkit:
         print(f"Decrypted text: {result}")
         return result
 
-    def find_payloads(self, directory="../public/payload"):
-        """Find all payload files in the specified directory"""
+    @staticmethod
+    def find_payloads(directory="../public/payload"):
         payloads = []
         if os.path.exists(directory) and os.path.isdir(directory):
             for file in os.listdir(directory):
@@ -66,11 +69,14 @@ class PwnStarToolkit:
                     payloads.append(os.path.join(directory, file))
         return payloads
 
+    @staticmethod
+    def colored_text(text, color_code):
+        return f"\033[{color_code}m{text}\033[0m"
+
     def hash_crack(self):
         print("\n=== Hash Crack ===")
         target_hash = input("Enter Hash: ")
 
-        # Automatically find payloads
         payloads = self.find_payloads()
 
         if not payloads:
@@ -108,7 +114,8 @@ class PwnStarToolkit:
                     password = line.rstrip("\n\r")
                     hashed = hashlib.sha1(password.encode()).hexdigest()
                     if hashed == target_hash:
-                        print(f"\n✓ Password found: {password}")
+                        check_icon = self.colored_text("✓", "92")
+                        print(f"\n{check_icon} Password found: {password}")
                         found = True
                         break
 
@@ -123,7 +130,8 @@ class PwnStarToolkit:
             return
 
         if not found:
-            print("\n✗ No password found in the payload.")
+            cross_icon = self.colored_text("✗", "91")
+            print(f"\n{cross_icon} No password found in the payload.")
 
 
 if __name__ == "__main__":
