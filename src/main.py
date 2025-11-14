@@ -1,5 +1,6 @@
 import hashlib
 import os
+import sys
 
 
 class PwnStarToolkit:
@@ -10,7 +11,7 @@ class PwnStarToolkit:
             self.display_menu()
             option = input("\nEnter option: ")
 
-            if option == "0":
+            if option == "0" or option == "exit":
                 break
             elif option == '1':
                 self.hash_crack()
@@ -61,12 +62,20 @@ class PwnStarToolkit:
         return result
 
     @staticmethod
-    def find_payloads(directory="../public/payload"):
+    def find_payloads():
+        if getattr(sys, 'frozen', False):
+            script_dir = os.path.dirname(sys.executable)
+        else:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+
+        project_root = os.path.dirname(script_dir)
+        payload_dir = os.path.join(project_root, "public", "payload")
+
         payloads = []
-        if os.path.exists(directory) and os.path.isdir(directory):
-            for file in os.listdir(directory):
+        if os.path.exists(payload_dir) and os.path.isdir(payload_dir):
+            for file in os.listdir(payload_dir):
                 if file.endswith('.txt'):
-                    payloads.append(os.path.join(directory, file))
+                    payloads.append(os.path.join(payload_dir, file))
         return payloads
 
     @staticmethod
