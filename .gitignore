@@ -1,2 +1,4 @@
 /public/payload/
 .idea/
+**/__init__.py
+*.pyc
