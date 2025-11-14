@@ -13,10 +13,20 @@
 
 </div>
 
-## Features
+## Current Features
 
-- 🔑 Decode classical ciphers: Vigenère, Caesar, ROT13, etc.  
-- 🛡️ Crack common hash types: MD5, SHA256, and more.
-- ⚡ Fast CLI interface for quick usage  
-- 📂 Easy integration into automated CTF workflows
+- 🖥️ Runs on Windows as a lightweight Python-based CLI toolkit.  
+- 🔐 Supports SHA-1 hash cracking with dictionary attacks.  
+- 🔢 Provides Vigenère cipher decoding. 
+
+## Upcoming Features
+
+- 🔑 More classical ciphers (Caesar, ROT13, Affine, etc.).  
+- 🛡️ More hash types (MD5, SHA-256, NTLM, bcrypt).  
+- 🔁 Extra encoders/decoders (Base64, hex, URL, Unicode).  
+- ⚡ Faster CLI and auto-solve options.  
+- 🔌 Modular extension support.  
+- 🧩 Utility tools (endian swap, number conversion, XOR).  
+- 🕵️ Basic pattern and frequency analysis.  
+- 📂 Workspace mode for saving outputs.  
 
